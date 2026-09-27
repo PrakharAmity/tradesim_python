@@ -1,0 +1,13 @@
+{
+  "runtime_config": {
+    "install_command": "python3 -m pip install -e .",
+    "start_command": "./start.sh",
+    "test_command": "./tests/run_tests.sh",
+    "ports": [
+      {
+        "container_port": 3000,
+        "type": "preview"
+      }
+    ]
+  }
+}

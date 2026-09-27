@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TradeSim Python</title><link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><div class="brand-icon">T</div><div><h1>TradeSim <span>Python</span></h1><p>MARKET BACKTESTING WORKSPACE</p></div></div>
+      <div class="server-state"><i></i><span>ENGINE ONLINE</span><small>v1.0</small></div>
+    </header>
+    <section id="incident" class="incident"><b>⚠ Production Analytics Anomaly Detected</b><span>The backtesting service is reporting inconsistent results for one or more execution policies. Inspect the runs before trusting the analytics.</span></section>
+    <section class="panel controls-panel">
+      <div class="section-heading"><div><p class="eyebrow">CONFIGURATION</p><h2>Run a backtest</h2></div><span class="live-label"><i></i> Live data</span></div>
+      <div class="controls">
+        <label>Ticker<select id="ticker"></select></label>
+        <label>Strategy<select id="strategy"><option value="all">All strategies</option></select></label>
+        <label>Max transactions<input id="maxTransactions" type="number" min="0" value="2"></label>
+        <label>Fee per fill<input id="transactionFee" type="number" min="0" step="0.25" value="2.00"></label>
+        <label>Cooldown days<input id="cooldownDays" type="number" min="0" value="1"></label>
+        <button id="run">Run Backtest <span>→</span></button>
+      </div>
+    </section>
+    <section class="metrics" aria-label="Backtest metrics">
+      <article class="metric"><div class="metric-top"><span>REALIZED PROFIT</span><b class="metric-icon green">↗</b></div><strong id="profit">—</strong><small>Gross return before fees</small></article>
+      <article class="metric"><div class="metric-top"><span>TOTAL TRADES</span><b class="metric-icon blue">⇄</b></div><strong id="tradesCount">—</strong><small>Completed buy / sell pairs</small></article>
+      <article class="metric"><div class="metric-top"><span>MAX DRAWDOWN</span><b class="metric-icon amber">⌁</b></div><strong id="drawdown">—</strong><small>Peak to trough</small></article>
+      <article class="metric"><div class="metric-top"><span>NET PROFIT</span><b class="metric-icon violet">$</b></div><strong id="netProfit">—</strong><small>After execution fees</small></article>
+    </section>
+    <section class="panel chart-panel"><div class="section-heading"><div><p class="eyebrow">PRICE ACTION</p><h2 id="chartTitle">Closing price</h2></div><div class="legend"><span><i class="line-key"></i> Close</span><span><i class="buy-key"></i> Buy</span><span><i class="sell-key"></i> Sell</span></div></div><div class="chart-wrap"><svg id="chart" viewBox="0 0 900 300" role="img" aria-label="Closing prices and trade fills"></svg></div></section>
+    <section class="panel ledger-panel"><div class="section-heading"><div><p class="eyebrow">EXECUTION</p><h2>Execution ledger</h2></div><span id="runCount" class="run-count">No run yet</span></div><div class="table-wrap"><table><thead><tr><th>STRATEGY</th><th>ACTION</th><th>DAY</th><th>PRICE</th><th>FEE</th><th>REALIZED P&amp;L</th><th>STATUS</th></tr></thead><tbody id="ledger"><tr><td colspan="7" class="empty">Choose a policy and run a backtest to see fills.</td></tr></tbody></table></div></section>
+    <footer><span>TRADESIM PYTHON</span><span>Deterministic sample market · In-memory simulation</span></footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
