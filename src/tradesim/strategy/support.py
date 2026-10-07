@@ -17,16 +17,15 @@ class StrategySupport:
             if last_sell is not None:
                 observed = max(observed, buy - last_sell - 1)
             gross += prices[sell] - prices[buy]
-            fees += fee
-            trades.extend((Trade("BUY", buy, prices[buy], 0.0, 0.0),
+            fees += 2 * fee
+            trades.extend((Trade("BUY", buy, prices[buy], fee, 0.0),
                            Trade("SELL", sell, prices[sell], fee, prices[sell] - prices[buy])))
             last_sell = sell
         net = gross - fees
         equity = peak = 0.0
         max_drawdown = 0.0
         for trade in trades:
-            if trade.action == "SELL":
-                equity += trade.realized_profit - trade.fee
+            equity += trade.realized_profit - trade.fee
             peak = max(peak, equity)
             if peak > 0:
                 max_drawdown = max(max_drawdown, (peak - equity) / peak)
